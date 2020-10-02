@@ -43,47 +43,47 @@ func (chart *pchart) AddSample(start time.Time, end time.Time, inspections uint,
 
 func (chart *pchart) GetTotalInspected() uint {
 	if chart.requiresRecalculation {
-		chart.reCalculate()
+		chart.recalculate()
 	}
 	return chart.totalInspected
 }
 
 func (chart *pchart) GetTotalDefectives() uint {
 	if chart.requiresRecalculation {
-		chart.reCalculate()
+		chart.recalculate()
 	}
 	return chart.totalDefectives
 }
 
 func (chart *pchart) GetPBar() float64 {
 	if chart.requiresRecalculation {
-		chart.reCalculate()
+		chart.recalculate()
 	}
 	return chart.pBar
 }
 
 func (chart *pchart) GetProportionDefectiveForSample(i uint) float64 {
 	if chart.requiresRecalculation {
-		chart.reCalculate()
+		chart.recalculate()
 	}
 	return chart.samples[i].p
 }
 
 func (chart *pchart) GetUpperControlLimitForSample(i uint) float64 {
 	if chart.requiresRecalculation {
-		chart.reCalculate()
+		chart.recalculate()
 	}
 	return chart.samples[i].ucl
 }
 
 func (chart *pchart) GetLowerControlLimitForSample(i uint) float64 {
 	if chart.requiresRecalculation {
-		chart.reCalculate()
+		chart.recalculate()
 	}
 	return chart.samples[i].lcl
 }
 
-func (chart *pchart) reCalculate() {
+func (chart *pchart) recalculate() {
 	chart.totalInspected = 0
 	chart.totalDefectives = 0
 	for _, sample := range chart.samples {
