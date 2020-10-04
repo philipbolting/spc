@@ -6,4 +6,4 @@ Work in progress
 
 ### Implemented control charts:
 * p-Chart 
-
+* np-Chart
