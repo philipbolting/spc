@@ -74,7 +74,7 @@ func TestGetProportionDefectiveForSample(t *testing.T) {
 		expected := float64(p)
 		got := chart.GetProportionDefectiveForSample(uint(i))
 		if math.Abs(got-expected) > 0.005 {
-			t.Errorf("expected %v but got %v (i=%v)", expected, got, i)
+			t.Errorf("expected %v but got %v (i=%v)", expected, got, i+1)
 		}
 	}
 }
