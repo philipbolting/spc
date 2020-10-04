@@ -92,8 +92,6 @@ func (chart *pchart) recalculate() {
 	}
 
 	chart.pBar = float64(chart.totalDefectives) / float64(chart.totalInspected)
-	// round pBar to three decimals
-	chart.pBar = math.Round(1000*chart.pBar) / 1000
 
 	deltaCL := 0.0
 	for i, sample := range chart.samples {
@@ -101,11 +99,6 @@ func (chart *pchart) recalculate() {
 		deltaCL = 3 * math.Sqrt(chart.pBar*float64(1-chart.pBar)/float64(sample.inspections))
 		chart.samples[i].ucl = chart.pBar + deltaCL
 		chart.samples[i].lcl = chart.pBar - deltaCL
-
-		// round p, ucl and lcl to two decimals
-		chart.samples[i].p = math.Round(100*chart.samples[i].p) / 100
-		chart.samples[i].ucl = math.Round(100*chart.samples[i].ucl) / 100
-		chart.samples[i].lcl = math.Round(100*chart.samples[i].lcl) / 100
 
 		if chart.samples[i].lcl < 0.0 {
 			chart.samples[i].lcl = 0.0

@@ -1,6 +1,7 @@
 package pchart
 
 import (
+	"math"
 	"testing"
 	"time"
 )
@@ -59,7 +60,7 @@ func TestGetPBar(t *testing.T) {
 	chart := buildTestChart()
 	expected := float64(0.067)
 	got := chart.GetPBar()
-	if got != expected {
+	if math.Abs(got-expected) > 0.001 {
 		t.Errorf("expected %v but got %v", expected, got)
 	}
 }
@@ -72,7 +73,7 @@ func TestGetProportionDefectiveForSample(t *testing.T) {
 		0.08, 0.00} {
 		expected := float64(p)
 		got := chart.GetProportionDefectiveForSample(uint(i))
-		if got != expected {
+		if math.Abs(got-expected) > 0.005 {
 			t.Errorf("expected %v but got %v (i=%v)", expected, got, i)
 		}
 	}
@@ -86,7 +87,7 @@ func TestGetUpperControlLimitForSample(t *testing.T) {
 		0.16, 0.14} {
 		expected := float64(ucl)
 		got := chart.GetUpperControlLimitForSample(uint(i))
-		if got != expected {
+		if math.Abs(got-expected) > 0.005 {
 			t.Errorf("expected %v but got %v (sample %v)", expected, got, i+1)
 		}
 	}
@@ -100,7 +101,7 @@ func TestGetLowerControlLimitForSample(t *testing.T) {
 		0.00, 0.00} {
 		expected := float64(ucl)
 		got := chart.GetLowerControlLimitForSample(uint(i))
-		if got != expected {
+		if math.Abs(got-expected) > 0.005 {
 			t.Errorf("expected %v but got %v (sample %v)", expected, got, i+1)
 		}
 	}
